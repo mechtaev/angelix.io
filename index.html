@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelix</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/user.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><a href="#about">About </a></li>
+                    <li role="presentation"><a href="https://github.com/mechtaev/angelix">Download </a></li>
+                    <li role="presentation"><a href="#publications">Publications </a></li>
+                    <li role="presentation"><a href="#experiments">Experiments </a></li>
+                    <li role="presentation"><a href="#semfix">Semfix </a></li>
+                    <li role="presentation"><a href="#people">People </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 get-it">
+                    <h1 class="text-left"> <img src="assets/img/logo.png" height="70"> Angelix</h1>
+                    <p class="text-left">Semantics-based test-driven automated program repair tool for C programs</p>
+                    <p class="text-left"><a class="btn btn-success btn-lg" role="button" href="https://github.com/mechtaev/angelix">Download </a></p>
+                </div>
+                <div class="col-lg-push-1 col-md-8">
+                    <h1> </h1>
+                    <p> <img class="img-responsive" src="assets/img/angelix_gui.PNG"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center" id="about">Automated program repair</h2>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <blockquote>
+                        <p class="text-center">The once-futuristic idea of automated program repair is gradually becoming a reality. Several approaches for automatically fixing bugs have been proposed recently. They can be classified into search-based methods and semantics-based
+                            methods. Our semantic analysis based repair tool Angelix synthesizes repairs based on semantic information of the program and scales up to real-world software. Furthermore, our repair method can repair multiple buggy locations
+                            that are dependent on each other. In our experiments, Angelix generated repairs from large-scale programs such as Wireshark and Php. We also successfully generated a patch for the well-known Heartbleed vulnerability.</p>
+                    </blockquote>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2 icon-feature"><i class="fa fa-cogs fa-5x"></i>
+                    <p class="text-center">Semantic analysis based repair tool that generates quality repairs in a scalable fashion </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 icon-feature"><i class="fa fa-bug fa-5x"></i>
+                    <p class="text-center"> Our tool can handle multiple buggy locations that are dependent on one another </p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 icon-feature"><i class="fa fa-check-square-o fa-5x"></i>
+                    <p class="text-center">Angelix generated multiline repairs from large scale real life programs like Wireshark and Php </p>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-2 icon-feature"></div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 icon-feature"><img src="assets/img/Heartbleed.png" width="90">
+                    <p class="text-center">Angelix synthesized a patch for the well-known Heartbleed vulnerability</p>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2 icon-feature"></div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h1 id="publications">Publications </h1>
+            <div class="media">
+                <div class="media-body">
+                    <h4>Angelix: Scalable Multiline Program Patch Synthesis via Symbolic Analysis</h4>
+                    <p class="authors">S. Mechtaev, J. Yi, A. Roychoudhury</p>
+                    <p>International Conference on Software Engineering 2016</p>
+                </div>
+                <div class="media-right"><a><a class="btn btn-default" role="button" href="http://www.comp.nus.edu.sg/~abhik/tools/angelix/papers/ICSE16-angelix.pdf"><i class="glyphicon glyphicon-download-alt"></i></a></a>
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-body">
+                    <h4>DirectFix: Looking for Simple Program Repairs </h4>
+                    <p class="authors">S. Mechtaev, J. Yi, A. Roychoudhury </p>
+                    <p>International Conference on Software Engineering 2015</p>
+                </div>
+                <div class="media-right"><a><a class="btn btn-default" role="button" href="https://www.comp.nus.edu.sg/~abhik/pdf/ICSE15-directfix.pdf"><i class="glyphicon glyphicon-download-alt"></i></a></a>
+                </div>
+            </div>
+            <div class="media">
+                <div class="media-body">
+                    <h4>SemFix: Program Repair via Semantic Analysis </h4>
+                    <p class="authors">H.D.T. Nguyen, D. Qi, A. Roychoudhury, S. Chandra </p>
+                    <p>International Conference on Software Engineering 2013</p>
+                </div>
+                <div class="media-right"><a><a class="btn btn-default" role="button" href="https://www.comp.nus.edu.sg/~abhik/pdf/ICSE13-SEMFIX.pdf"><i class="glyphicon glyphicon-download-alt"></i></a></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h1 id="experiments">Experiments </h1>
+            <p>Angelix was evaluated using GenProg ICSE'12 benchmark. Experimental data is available&nbsp;<a href="http://www.comp.nus.edu.sg/~release/angelix/angelix-experiments.tar.gz">here</a>. </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Subject </th>
+                            <th>LoC </th>
+                            <th>Versions </th>
+                            <th>Repairs </th>
+                            <th>Avg. Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wireshark </td>
+                            <td>2814K </td>
+                            <td>7 </td>
+                            <td> 4 </td>
+                            <td>23 min</td>
+                        </tr>
+                        <tr>
+                            <td>Php </td>
+                            <td>1046K </td>
+                            <td>44 </td>
+                            <td>10 </td>
+                            <td>62 min</td>
+                        </tr>
+                        <tr>
+                            <td>Gzip </td>
+                            <td>491K </td>
+                            <td> 5 </td>
+                            <td> 2 </td>
+                            <td>4 min</td>
+                        </tr>
+                        <tr>
+                            <td>Gmp </td>
+                            <td>145K </td>
+                            <td> 2 </td>
+                            <td> 2 </td>
+                            <td>14 min</td>
+                        </tr>
+                        <tr>
+                            <td>Libtiff </td>
+                            <td>77K </td>
+                            <td>24 </td>
+                            <td> 10 </td>
+                            <td>14 min</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h1 id="semfix">Semfix </h1>
+            <p>Semfix is the predecessor of Angelix. Taking advantage of the modular design of Angelix, we incorporated the algorithm of SemFix into Angelix. Using this new implementation of Semfix, we could reproduce the experimental results of the original
+                Semfix. The experimental results and the scripts to reproduce the results are available&nbsp;<a href="http://www.comp.nus.edu.sg/~release/angelix/semfix-experiments.tar.gz">here</a>. </p>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h1 id="people">People </h1>
+            <h3>Principal investigator </h3>
+            <ul>
+                <li><a href="http://www.comp.nus.edu.sg/~abhik/">Abhik Roychoudhury</a> </li>
+            </ul>
+            <h3>Developers </h3>
+            <ul>
+                <li><a href="http://www.comp.nus.edu.sg/~mechtaev/">Sergey Mechtaev</a> </li>
+                <li><a href="http://www.comp.nus.edu.sg/~leejy/">Jooyong Yi</a> </li>
+            </ul>
+            <h3>Contributors (in alphabetical order)</h3>
+            <ul>
+                <li>Dipanjan Das </li>
+                <li>G Sri Shaila </li>
+                <li>Priyanka Bose </li>
+                <li><a href="http://www.comp.nus.edu.sg/~shinhwei/">Shin Hwei Tan</a> </li>
+            </ul>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>National University of Singapore © 2016</h5></div>
+                <div class="col-sm-6 social-icons"><a href="http://automated-program-repair.org"><i class="fa fa-cogs"></i></a><a href="https://github.com/mechtaev/angelix"><i class="fa fa-github-alt"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
