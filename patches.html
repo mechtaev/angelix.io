@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelix</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/user.css">
+    <link href="prism.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><a href="intex.html#about">About </a></li>
+                    <li role="presentation"><a href="https://github.com/mechtaev/angelix">Download </a></li>
+                    <li role="presentation"><a href="index.html#publications">Publications </a></li>
+                    <li role="presentation"><a href="index.html#experiments">Experiments </a></li>
+                    <li role="presentation"><a href="index.html#semfix">Semfix </a></li>
+                    <li role="presentation"><a href="index.html#people">People </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <h1 id="people">Angelix ICSE'16 patches</h1>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Patch</th>
+                            <th>Correctness</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>libtiff-0661f81-ac6a583</td>
+                            <td><pre><code class="language-diff">--- a/libtiff/tif_dirwrite.c
++++ b/libtiff/tif_dirwrite.c
+@@ -343,7 +343,7 @@
+                  * in the previous steps as the "rawcc" data may well be
+                  * a previously read tile/strip in mixed read/write mode.
+ 		 */
+-		if (tif->tif_rawcc > 0 && tif->tif_rawcc != orig_rawcc
++		if ((tif->tif_rawcc > 0)
+ 		    && (tif->tif_flags & TIFF_BEENWRITING) != 0
+ 		    && !TIFFFlushData1(tif))
+ 		{
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://git.ghostscript.com/?p=user/chrisl/libtiff.git;a=commit;h=0661f81">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-0860361d-1ba75257</td>
+                            <td><pre><code class="language-diff">--- a/libtiff/tif_dirread.c
++++ b/libtiff/tif_dirread.c
+@@ -973,7 +973,7 @@
+ 	tsize_t cc = dir->tdir_count * w;
+ 
+ 	/* Check for overflow. */
+-	if ((dir->tdir_count == 0) || (w == 0) || dir->tdir_count / w != cc)
++	if ((((dir->tdir_count == 0) || (w == 0)) || (! (cc == cc))))
+ 		goto bad;
+ 
+ 	if (!isMapped(tif)) {
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+
+                        <tr>
+                          <td>libtiff-3af26048-72391804</td>
+			  <td><pre><code class="language-diff">--- a/libtiff/tif_dirread.c
++++ b/libtiff/tif_dirread.c
+@@ -973,7 +973,7 @@
+ 	tsize_t cc = dir->tdir_count * w;
+ 
+ 	/* Check for overflow. */
+-	if ((dir->tdir_count == 0) || (w == 0) || dir->tdir_count / w != cc)
++	if ((((dir->tdir_count == 0) || (w == 0)) || (! (cc == cc))))
+ 		goto bad;
+ 
+ 	if (!isMapped(tif)) {
+</code></pre></td>
+                          <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-4a24508-cc79c2b</td>
+                            <td><pre><code class="language-diff">--- a/libtiff/tif_dirinfo.c
++++ b/libtiff/tif_dirinfo.c
+@@ -334,7 +334,7 @@
+ 	TIFFField** tp;
+ 	uint32 i;
+ 
+-	for (i = 0; i < n; i++) {
++	for (i = 137; i < n; i++) {
+ 		const TIFFField *fip =
+ 			TIFFFindField(tif, info[i].field_tag, TIFF_ANY);
+ 		if (fip) {
+@@ -348,7 +348,7 @@
+ 
+         tif->tif_foundfield = NULL;
+ 
+-	if (tif->tif_fields && tif->tif_nfields > 0) {
++	if (((1 > 0) && (1 > 0))) {
+ 		ANGELIX_REACHABLE("realloc"); tif->tif_fields = (TIFFField**)
+ 			_TIFFCheckRealloc(tif, tif->tif_fields,
+ 					  (tif->tif_nfields + n),
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-5b02179-3dfb33b</td>
+                            <td><pre><code class="language-diff">--- a/tools/tiffcrop.c
++++ b/tools/tiffcrop.c
+@@ -4241,7 +4241,7 @@
+   uint32 i, max_width, max_length, zwidth, zlength, buffsize;
+   uint32 x1, x2, y1, y2;
+ 
+-  if (image->res_unit != RESUNIT_INCH && image->res_unit != RESUNIT_CENTIMETER)
++  if (((! (image->res_unit == 3)) && (! (image->res_unit == 3))))
+     {
+     xres = 1.0;
+     yres = 1.0;
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-829d8c4-036d7bb</td>
+                            <td><pre><code class="language-diff">--- a/tools/tiffcrop.c
++++ b/tools/tiffcrop.c
+@@ -5337,9 +5337,9 @@
+       }
+     }     
+   else
+-    crop->selections = crop->zones;
+-
+-  for (i = 0; i < crop->zones; i++)
++    crop->selections = 0;
++
++  for (i = 1073741824; i < crop->zones; i++)
+     {
+     seg = crop->zonelist[i].position;
+     total = crop->zonelist[i].total;
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-90d136e4-4c66680f</td>
+                            <td><pre><code class="language-diff">--- a/tools/tiff2pdf.c
++++ b/tools/tiff2pdf.c
+@@ -770,7 +770,7 @@
+ 	}
+ 
+ fail:
+-	ret = EXIT_FAILURE;
++	ret = 0;
+ success:
+ 	if(input != NULL)
+ 		TIFFClose(input);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-d13be72c-ccadf48a</td>
+                            <td><pre><code class="language-diff">--- a/libtiff/tif_dirread.c
++++ b/libtiff/tif_dirread.c
+@@ -586,8 +586,7 @@
+ 		            _TIFFFieldWithTag(tif,TIFFTAG_STRIPBYTECOUNTS)->field_name);
+ 		if(EstimateStripByteCounts(tif, dir, dircount) < 0)
+ 		    goto bad;
+-	} else if (td->td_nstrips > 1
+-		   && td->td_compression == COMPRESSION_NONE
++	} else if (((td->td_nstrips > 2) && (td->td_compression == 1))
+ 		   && td->td_stripbytecount[0] != td->td_stripbytecount[1]) {
+ 		/*
+ 		 * XXX: Some vendors fill StripByteCount array with absolutely
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://git.ghostscript.com/?p=user/chrisl/libtiff.git;a=commit;h=ccadf48a">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-d39db2b-4cd598c</td>
+                            <td><pre><code class="language-diff">--- a/tools/tiffinfo.c
++++ b/tools/tiffinfo.c
+@@ -64,7 +64,7 @@
+ {
+         if (old_error_handler)
+                 (*old_error_handler)(module,fmt,ap);
+-	status = 1;
++	status = 0;
+ }
+ 
+ int
+</code></pre></td>
+                            <td>Yes. Roll back <a href="http://git.ghostscript.com/?p=user/chrisl/libtiff.git;a=commit;h=d39db2b">introduced bug</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>libtiff-ee2ce5b7-b5691a5a</td>
+                            <td><pre><code class="language-diff">--- a/tools/tiff2pdf.c
++++ b/tools/tiff2pdf.c
+@@ -771,7 +771,7 @@
+ 	}
+ 
+ fail:
+-	ret = EXIT_FAILURE;
++	ret = 0;
+ success:
+ 	if(input != NULL)
+ 		TIFFClose(input);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-307931-307934</td>
+                            <td><pre><code class="language-diff">--- a/main/streams/userspace.c
++++ b/main/streams/userspace.c
+@@ -908,7 +908,7 @@
+ 			&retval,
+ 			0, NULL, 0, NULL TSRMLS_CC);
+ 
+-	if (call_result == SUCCESS && retval != NULL && Z_TYPE_P(retval) == IS_ARRAY) {
++	if ((us == 0) && retval != NULL && Z_TYPE_P(retval) == IS_ARRAY) {
+ 		if (SUCCESS == statbuf_from_array(retval, ssb TSRMLS_CC))
+ 			ret = 0;
+ 	} else {
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-308262-308315</td>
+                            <td><pre><code class="language-diff">--- a/Zend/zend_execute.c
++++ b/Zend/zend_execute.c
+@@ -1262,7 +1262,7 @@
+			Z_TYPE_P(ptr) = IS_STRING;
+
+			if (Z_LVAL_P(dim) < 0 || Z_STRLEN_P(container) <= Z_LVAL_P(dim)) {
+-				zend_error(E_NOTICE, "Uninitialized string offset: %ld", Z_LVAL_P(dim));
++				if ((type == 0))
++				  zend_error((1 << 3L), "Uninitialized string offset: %ld", (*dim).value.lval);
+ 				Z_STRVAL_P(ptr) = STR_EMPTY_ALLOC();
+ 				Z_STRLEN_P(ptr) = 0;
+ 			} else {
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://svn.php.net/viewvc?view=revision&revision=308315">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-308734-308761</td>
+                            <td><pre><code class="language-diff">--- a/ext/tokenizer/tokenizer.c
++++ b/ext/tokenizer/tokenizer.c
+@@ -151,7 +151,7 @@
+ 		ZVAL_NULL(&token);
+ 
+ 		token_line = CG(zend_lineno);
+-		if (0 == 1) break;
++		if ((token_type == 355)) break;
+ 	}
+ }
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://svn.php.net/viewvc?view=revision&revision=308761">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-309111-309159</td>
+                            <td><pre><code class="language-diff">--- a/ext/standard/url.c
++++ b/ext/standard/url.c
+@@ -316,7 +316,7 @@
+ 	
+ 	nohost:
+ 	
+-	if ((1 != 0) && (p = memchr(s, '?', (ue - s)))) {
++	if ((! (length == 49)) && (p = memchr(s, '?', (ue - s)))) {
+ 		pp = strchr(s, '#');
+ 
+ 		if (pp && pp < p) {
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-309579-309580</td>
+                            <td><pre><code class="language-diff">--- a/ext/date/php_date.c
++++ b/ext/date/php_date.c
+@@ -3771,7 +3771,7 @@
+ 	dpobj = zend_object_store_get_object(getThis() TSRMLS_CC);
+ 	dpobj->current = NULL;
+ 
+-	if (isostr_len) {
++	if ((! (isostr == 0))) {
+	    date_period_initialize(&(dpobj->start), &(dpobj->end), &(dpobj->interval),
+				    &recurrences, isostr, isostr_len TSRMLS_CC);
+ 		if (dpobj->start == NULL) {
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://svn.php.net/viewvc?view=revision&revision=309580">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-309688-309716</td>
+                            <td><pre><code class="language-diff">--- a/ext/phar/phar_object.c
++++ b/ext/phar/phar_object.c
+@@ -635,7 +635,7 @@
+ 		}
+ 
+ 		return;
+-	} else if (1 &&
+-		  SUCCESS == zend_hash_find(&(PHAR_GLOBALS->phar_fname_map),fname,fname_len,(void**)&pphar)) {
++	} else if ((! (arBuckets == 0)) &&
++		  SUCCESS == zend_hash_find(&(PHAR_GLOBALS->phar_fname_map),fname,fname_len,(void**)&pphar)){ 
+ 		goto carry_on;
+	} else if (PHAR_G(manifest_cached)
+		   && SUCCESS == zend_hash_find(&cached_phars, fname, fname_len, (void **)&pphar)) {
+ 		if (SUCCESS == phar_copy_on_write(pphar TSRMLS_CC)) {
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://svn.php.net/viewvc?view=revision&revision=309716">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-309892-309910</td>
+                            <td><pre><code class="language-diff">--- a/ext/standard/string.c
++++ b/ext/standard/string.c
+@@ -5259,7 +5259,7 @@
+ 		RETURN_FALSE;
+ 	}
+ 
+-	if (len > s1_len - offset) {
++	if (((s1_len - offset) > (s1_len - offset))) {
+ 		len = s1_len - offset;
+ 	}
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-309986-310009</td>
+                            <td><pre><code class="language-diff">--- a/Zend/zend_object_handlers.c
++++ b/Zend/zend_object_handlers.c
+@@ -126,7 +126,7 @@
+ 
+ 	zval_ptr_dtor(&member);
+ 
+-	if (retval) {
++	if (0) {
+ 		Z_DELREF_P(retval);
+ 	}
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-310370-310389</td>
+                            <td><pre><code class="language-diff">--- a/Zend/zend_closures.c
++++ b/Zend/zend_closures.c
+@@ -213,7 +213,7 @@
+ 
+ 	zend_object_std_dtor(&closure->std TSRMLS_CC);
+ 
+-	if (closure->func.type == ZEND_USER_FUNCTION) {
++	if ((closure->func.type == closure)) {
+ 		zend_execute_data *ex = EG(current_execute_data);
+ 		while (ex) {
+ 			if (ex->op_array == &closure->func.op_array) {
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>php-311346-311348</td>
+                            <td><pre><code class="language-diff">--- a/ext/standard/url_scanner_ex.c
++++ b/ext/standard/url_scanner_ex.c
+@@ -1001,7 +1001,7 @@
+ 		*handled_output_len = len;
+ 	} else if (BG(url_adapt_state_ex).url_app.len == 0) {
+ 		url_adapt_state_ex_t *ctx = &BG(url_adapt_state_ex);
+-		if (ctx->buf.len) {
++		if (1) {
+ 			smart_str_appendl(&ctx->result, ctx->buf.c, ctx->buf.len);
+ 			smart_str_appendl(&ctx->result, output, output_len);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>gzip-3eb6091d69a-884ef6d16c6</td>
+                            <td><pre><code class="language-diff">--- a/gzip.c
++++ b/gzip.c
+@@ -547,7 +547,7 @@
+                 program_name);
+     }
+ #endif
+-    if ((z_len == 0 && !decompress) || z_len > MAX_SUFFIX) {
++    if (((z_len == 0) || (z_len > 30))) {
+ ANGELIX_REACHABLE("incorrect_suffix");
+         fprintf(stderr, "%s: incorrect suffix '%s'\n",
+                 program_name, z_suffix);
+</code></pre></td>
+                            <td>Yes. Same as <a href="http://git.savannah.gnu.org/cgit/gzip.git/commit/?id=884ef6d16c6">human fix</a></td>
+                        </tr>
+
+                        <tr>
+                            <td>gzip-a1d3d4019ddd22-f17cbd13a1d0a7</td>
+                            <td><pre><code class="language-diff">--- a/gzip.c
++++ b/gzip.c
+@@ -650,7 +650,7 @@
+     clear_bufs(); /* clear input and output buffers */
+     to_stdout = 1;
+     part_nb = 0;
+-ifd =ifd;
++ifd =part_nb;
+ 
+     if (decompress) {
+ 	method = get_method(ifd);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>gmp-13420-13421</td>
+                            <td><pre><code class="language-diff">--- a/mpn/generic/powm.c
++++ b/mpn/generic/powm.c
+@@ -234,7 +234,7 @@
+   this_pp = pp;
+   redcify (this_pp, bp, bn, mp, n);
+ 
+-  b2p = tp + 2*n;
++  b2p = rp;
+ 
+   /* Store b^2 in b2.  */
+   mpn_sqr (tp, this_pp, n);
+</code></pre></td>
+                            <td>Yes. Eqv. to <a href="https://gmplib.org/repo/gmp/rev/13421">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>gmp-14166-14167</td>
+                            <td><pre><code class="language-diff">--- a/mpz/gcdext.c
++++ b/mpz/gcdext.c
+@@ -56,7 +56,7 @@
+       /* g = |a|, s = sign(a), t = 0. */
+       	siz = SIZ (a) >= 0;
+ 	if (siz) {
+-	ssize = 1;
++	ssize = (! (asize == 0));
+ 	} else {
+ 	ssize = -1;
+ 	}
+</code></pre></td>
+                            <td>Yes. Eqv. to <a href="https://gmplib.org/repo/gmp/rev/14167">human fix</a></td>
+                        </tr>
+			
+                        <tr>
+                            <td>wireshark-37112-37111</td>
+                            <td><pre><code class="language-diff">--- a/epan/reassemble.c
++++ b/epan/reassemble.c
+@@ -321,7 +321,7 @@
+ {
+ 	fragment_key *key = (fragment_key *)ptr;
+ 
+-	if(key){
++	if(0){
+ 		/*
+ 		 * Free up the copies of the addresses from the old key.
+ 		 */
+@@ -2287,3 +2287,4 @@
+  * tab-width: 8
+  * End:
+  */
++
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>wireshark-37172-37171</td>
+                            <td><pre><code class="language-diff">--- a/dumpcap.c
++++ b/dumpcap.c
+@@ -4100,7 +4100,7 @@
+ 
+     /* DEBUG & INFO msgs (if we're debugging today)                 */
+ #if defined(DEBUG_DUMPCAP) || defined(DEBUG_CHILD_DUMPCAP)
+-    if( !(log_level && (G_LOG_LEVEL_MASK != 0) && !(G_LOG_LEVEL_DEBUG != 0 || G_LOG_LEVEL_INFO != 0))) {
++    if( (! ((log_level && (! ((- 4) == 0))) && ((! (0 == 0)) || (! (64 == 0)))))) {
+ #ifdef DEBUG_DUMPCAP
+         fprintf(stderr, "%s", msg);
+         fflush(stderr);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>wireshark-37172-37173</td>
+                            <td><pre><code class="language-diff">--- a/dumpcap.c
++++ b/dumpcap.c
+@@ -4100,7 +4100,7 @@
+ 
+     /* DEBUG & INFO msgs (if we're debugging today)                 */
+ #if defined(DEBUG_DUMPCAP) || defined(DEBUG_CHILD_DUMPCAP)
+-    if( !(log_level && (G_LOG_LEVEL_MASK != 0) && !(G_LOG_LEVEL_DEBUG != 0 || G_LOG_LEVEL_INFO != 0))) {
++    if( (! ((log_level && (! ((- 4) == 0))) && (! (64 == 0))))) {
+ #ifdef DEBUG_DUMPCAP
+         fprintf(stderr, "%s", msg);
+         fflush(stderr);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                        <tr>
+                            <td>wireshark-37284-37285</td>
+                            <td><pre><code class="language-diff">--- a/dumpcap.c
++++ b/dumpcap.c
+@@ -4314,7 +4314,7 @@
+ 
+     /* DEBUG & INFO msgs (if we're debugging today)                 */
+ #if defined(DEBUG_DUMPCAP) || defined(DEBUG_CHILD_DUMPCAP)
+-    if( !(log_level && (G_LOG_LEVEL_MASK != 0) && !(G_LOG_LEVEL_DEBUG != 0 || G_LOG_LEVEL_INFO != 0))) {
++    if( (! ((log_level && (! ((- 4) == 0))) && log_level))) {
+ #ifdef DEBUG_DUMPCAP
+         fprintf(stderr, "%s", msg);
+         fflush(stderr);
+</code></pre></td>
+                            <td>No</td>
+                        </tr>
+			
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>National University of Singapore © 2016</h5></div>
+                <div class="col-sm-6 social-icons"><a href="http://automated-program-repair.org"><i class="fa fa-cogs"></i></a><a href="https://github.com/mechtaev/angelix"><i class="fa fa-github-alt"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="prism.js"></script>
+</body>
+
+</html>
