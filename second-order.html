@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angelix</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/user.css">
+    <link href="prism.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li role="presentation"><a href="index.html#about">About </a></li>
+                    <li role="presentation"><a href="https://github.com/mechtaev/angelix">Download </a></li>
+                    <li role="presentation"><a href="index.html#publications">Publications </a></li>
+                    <li role="presentation"><a href="index.html#experiments">Experiments </a></li>
+                    <li role="presentation"><a href="index.html#semfix">Semfix </a></li>
+                    <li role="presentation"><a href="index.html#people">People </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+          <h1 id="people">SE-ESOC tool (FSE'18)</h1>
+
+          <div class="alert alert-danger" role="alert">This is a demo version of the system proposed in the paper "Symbolic Execution with Existential Second-Order Constraints" by Sergey Mechtaev, Alberto Griggio, Alessandro Cimatti and Abhik Roychoudhury, in FSE'18. Full version will be released in the end of September 2018.</div>
+
+          <p>In order to download and install SE-ESOC, you could create a temporary container using the following command (the container will be automatically removed on exit):</p>
+
+          <pre><code class="language-bash">sudo docker run ­­rm ­ti mechtaev/fse18­demo /bin/bash</code></pre>
+
+          <p>In order to inject a symbolic variables, the buggy statement is replaced with a call of the function klee_apply_symbolic in the file find/ftsfind.c:</p>
+
+          <pre><code class="language-c"> /* Not an error, cope with the usual cases. */ 
+  if (klee_apply_symbolic(3, (int[]){ent­>fts_info, ent­>fts_errno, prev_depth})) 
+    { 
+      assert(!state.have_stat); 
+      assert(!state.have_type);</code></pre>
+
+          <p>Then, first-order symbolic execution can be executed using the following command:</p>
+
+          <pre><code class="language-bash">/tools/run­fo</code></pre>
+
+          <p>Which should produce the following output:</p>
+
+          <pre><code>...
+KLEE: done: total instructions = 26798398 
+KLEE: done: completed paths = 642 
+KLEE: done: generated tests = 513</code></pre>
+
+          <p>Second-order symbolic execution can be executed using the following command:</p>
+
+          <pre><code class="language-bash">/tools/run­so</code></pre>
+
+          <p>Which should produce the following output:</p>
+
+          <pre><code>...
+KLEE: done: total instructions = 1716822 
+KLEE: done: completed paths = 10 
+KLEE: done: generated tests = 9</code></pre>
+
+          <p>As can be seen, second-order symbolic execution significantly reduced the number of explored
+paths. In order to view function interpretations synthesized along explored paths, the following
+command can be used e.g. for path with the index 6:</p>
+
+          <pre><code class="language-bash">/tools/encoder pse 10 3 /tmp/encoding.smt2 findutils/objllvm/find/klee­last/test000006.smt2</code></pre>
+
+          <p>Which will produce the following interpretation:</p>
+
+          <pre><code>((angelix!arg!1 == angelix!arg!2) || (9 < angelix!arg!0)) </code></pre>
+
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>National University of Singapore © 2016</h5></div>
+                <div class="col-sm-6 social-icons"><a href="http://automated-program-repair.org"><i class="fa fa-cogs"></i></a><a href="https://github.com/mechtaev/angelix"><i class="fa fa-github-alt"></i></a></div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="prism.js"></script>
+</body>
+
+</html>
