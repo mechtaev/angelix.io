@@ -41,7 +41,7 @@
 
           <p>In order to download and install SE-ESOC, you could create a temporary container using the following command (the container will be automatically removed on exit):</p>
 
-          <pre><code class="language-bash">sudo docker run ­­rm ­ti mechtaev/fse18­demo /bin/bash</code></pre>
+          <pre><code class="language-bash">sudo docker run --rm -ti mechtaev/fse18­demo /bin/bash</code></pre>
 
           <p>In order to inject a symbolic variables, the buggy statement is replaced with a call of the function klee_apply_symbolic in the file find/ftsfind.c:</p>
 
