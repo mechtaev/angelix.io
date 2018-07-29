@@ -12,28 +12,32 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            </div>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li role="presentation"><a href="index.html#about">About </a></li>
-                    <li role="presentation"><a href="https://github.com/mechtaev/angelix">Download </a></li>
-                    <li role="presentation"><a href="index.html#publications">Publications </a></li>
-                    <li role="presentation"><a href="index.html#experiments">Experiments </a></li>
-                    <li role="presentation"><a href="index.html#semfix">Semfix </a></li>
-                    <li role="presentation"><a href="index.html#people">People </a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- <nav class="navbar navbar-default"> -->
+    <!--     <div class="container"> -->
+    <!--         <div class="navbar-header"> -->
+    <!--             <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> -->
+    <!--         </div> -->
+    <!--         <div class="collapse navbar-collapse" id="navcol-1"> -->
+    <!--             <ul class="nav navbar-nav navbar-right"> -->
+    <!--                 <li role="presentation"><a href="index.html#about">About </a></li> -->
+    <!--                 <li role="presentation"><a href="https://github.com/mechtaev/angelix">Download </a></li> -->
+    <!--                 <li role="presentation"><a href="index.html#publications">Publications </a></li> -->
+    <!--                 <li role="presentation"><a href="index.html#experiments">Experiments </a></li> -->
+    <!--                 <li role="presentation"><a href="index.html#semfix">Semfix </a></li> -->
+    <!--                 <li role="presentation"><a href="index.html#people">People </a></li> -->
+    <!--             </ul> -->
+    <!--         </div> -->
+    <!--     </div> -->
+    <!-- </nav> -->
     <section>
         <div class="container">
           <h1 id="people">SE-ESOC tool (FSE'18)</h1>
 
-          <div class="alert alert-danger" role="alert">This is a demo version of the system proposed in the paper "Symbolic Execution with Existential Second-Order Constraints" by Sergey Mechtaev, Alberto Griggio, Alessandro Cimatti and Abhik Roychoudhury, in FSE'18. Full version will be released in the end of September 2018.</div>
+          <div class="alert alert-danger" role="alert">This is a demo version of SE-ESOC proposed in the paper "Symbolic Execution with Existential Second-Order Constraints" by Sergey Mechtaev, Alberto Griggio, Alessandro Cimatti and Abhik Roychoudhury, in FSE'18. Full version will be released in the end of September 2018.</div>
+
+          <p>The purpose of this demo is to reproduce the find.091557f6 example from Section 5 of the paper using a demo version of SE-ESOC. Note that some of the results may differ from the results in the paper, because behaviour of find depends on the filesystem, and the filesystems in the given Docker container has slightly different file system structure/configuration from our experimental environment.</p>
+
+          <p>The demo version of SE-ESOC is distributed in the following docker container: <a href="https://hub.docker.com/r/mechtaev/fse18-demo/">https://hub.docker.com/r/mechtaev/fse18-demo/</a>.</p>
 
           <p>In order to download and install SE-ESOC, you could create a temporary container using the following command (the container will be automatically removed on exit):</p>
 
@@ -85,8 +89,8 @@ command can be used e.g. for path with the index 6:</p>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5>National University of Singapore © 2016</h5></div>
-                <div class="col-sm-6 social-icons"><a href="http://automated-program-repair.org"><i class="fa fa-cogs"></i></a><a href="https://github.com/mechtaev/angelix"><i class="fa fa-github-alt"></i></a></div>
+                    <h5>National University of Singapore © 2018</h5></div>
+                <div class="col-sm-6 social-icons"><a href="http://program-repair.org"><i class="fa fa-cogs"></i></a><a href="https://github.com/mechtaev/angelix"><i class="fa fa-github-alt"></i></a></div>
             </div>
         </div>
     </footer>
